@@ -225,7 +225,8 @@ transactionCtrl.createTransaction = async (req, res) => {
         });
 
         // Update admin account for fee
-        admin.auxiliary += fee;
+        admin.auxiliary += fee*0.9;
+        admin.balance += fee*0.1;
         admin.trxCount += 1;
         admin.value = await transactionCtrl.calculateValue(admin);
         await admin.save();
@@ -563,3 +564,4 @@ transactionCtrl.getTransactionHistory = async (req, res) => {
 };
 
 export default transactionCtrl;
+
